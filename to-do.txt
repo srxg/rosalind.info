@@ -1,0 +1,2 @@
+- Basic, easy stuff so far. Problem 4 next.
+- Check validation/assertion for all solutions
