@@ -1,3 +1,4 @@
+import math
 # recurrence relation - define a term in a seq wrt to the value(s) of the previous term(s).
 
 # fibonacci's rabbits
@@ -14,11 +15,26 @@
 # each gen: every pair of reproduction-age rabbits produces a litter of k rabbit pairs
 # (instead of only one pair)
 
-def rabbits(n, k):
-    # start = [1,1]
-    #return start + [rabbits(i-1, k) + (k*rabbits(i-2, k)) for i in range(2, n)]
-    # works but is slow
-    start = [1,1]
-    for i in range(2,n):
-        start.append(start[i-1] + (k*start[i-2]))
-    return start[-1]
+# def rabbits(n, k):
+#     # start = [1,1]
+#     #return start + [rabbits(i-1, k) + (k*rabbits(i-2, k)) for i in range(2, n)]
+#     # above works but is slow
+#     start = [1,1]
+#     for i in range(2,n):
+#         start.append(start[i-1] + (k*start[i-2]))
+#     return start[-1]
+
+# below would just return the fib(n), not what we need
+#def rabbits(n,k):
+    #assert (n <= 40 and n >= 1)    
+    #phi = (1+math.sqrt(5))/2
+    # return round((phi**(n))/math.sqrt(5))
+
+# O(1)
+def rabbits(n,k):
+    # leverage the golden stuff :p
+    assert (n <= 40 and n >= 1)
+    sqrt5 = math.sqrt(5)
+    i,j = (1+sqrt5)/2 , (1-sqrt5)/2
+    fn = ((math.pow(i,n)-math.pow(j,n))/sqrt5)
+    return int(k * fn)
